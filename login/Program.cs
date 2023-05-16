@@ -21,6 +21,7 @@ builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IRatingService, RatingService>();
+builder.Services.AddTransient<IPasswordStrengthService, PasswordStrengthService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();

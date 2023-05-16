@@ -1,56 +1,56 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
-    <link href='./ShoppingBag.css' rel="stylesheet" />
-    <script src='./ShoppingBag.js'></script>
-    <template id="template-product-card">
-        <tr class="item-row">
-            <td class="image-column">
-                <a rel="lightbox" href="#">
-                    <div class="image"><img width="100%" /></div>
-                </a>
-            </td>
-            <td class="description-column">
-                <div>
-                    <h3 class="item-name"></h3>
-                    <h6><p class="item-number"></p><a href="#">לפרטים נוספים</a></h6>
-                </div>
-            </td>
-            <td class="availability-column">
-                <div><h3 class="item-name">במלאי</h3></div>
-            </td>
-            <td class="total-column-delete">
-                <div class="expando-height" style="height: 99px;">
+    <title>Shopping Bag</title>
+    <link href="./ShoppingBag.css" rel="stylesheet" />
+</head>  
+<body>
+    <div class="container">
+        <h1>Shopping Bag</h1>
+        <p>
+            Your shopping bag contanis <span id="item-count"></span> itmes and reaches a total sum of  <span id="total-amount"></span> $.
+        </p>
+
+        <table id="items">
+            <thead>
+                <tr>
+                    <th colspan="2">פריטים</th>
+                    <th>זמינות</th>
+                    <th>סכום ההזמנה</th>
+                </tr>
+            </thead>
+            <tbody id="product-list">
+                <!-- Product cards will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <button id="submit-order">click to order</button>
+        
+        <template id="template-product-card">
+            <tr class="template-product-card">
+                <td>
+                    <img class="image" src="" alt="Product Image" />
+                </td>
+                <td>
+                    <h3 class="description"></h3>
+                    <p class="item-number"></p>
+                    <a href="#">לפרטים נוספים</a>
+                </td>
+                <td>
+                    <h3 class="item-name">במלאי</h3>
+                </td>
+                <td>
                     <p class="price"></p>
-                    <a href="#" title="לחצו כאן כדי להסיר את פריט זה" class="hide-delete-button-show-text">הסרת פריט</a>
-                </div>
-            </td>
-        </tr>
-    </template>
-</head>
-<body onload="loadData()">
-    <div class="cart">
-        <div id="title">
-            <h1> סל קניות </h1>
-            <p>
-                הסל שלך מכיל <span id="item-count"></span> פריטים ומגיע לסך של <span id="total-amount"></span> $.
-            </p>
-            <a class="go-to-checkout TopLink" href="#" onclick="placeOrder(); return false;">לביצוע ההזמנה</a> <a href="Products.html?fromShoppingBag=1">המשך בקניה</a> <div class="clear-both"></div>
-        </div>
-        <div class="cist-group">
-            <table id="items" class="items">
-                <thead>
-                    <tr>
-                        <th class="items-column" colspan="2">פריטים</th>
-                        <th>זמינות</th>
-                        <th class="total-column">סכום ההזמנה</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+                    <a class="delete" title="לחצו כאן כדי להסיר את פריט זה">הסרת פריט</a>
+                </td>
+            </tr>
+        </template>
     </div>
+
+    <script src='./ShoppingBag.js'></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=> onLoad());
+    </script>
 </body>
 </html>
