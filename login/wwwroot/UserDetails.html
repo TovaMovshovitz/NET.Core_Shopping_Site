@@ -3,19 +3,31 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="./Style.css">
+    <script src="UserDetails.js"></script>
 </head>
-<body onload="LoadUserDetails()">
-    <div style="display:inline; margin:auto;">
-        <br /><br />
-        <h1 id="hello"></h1><br /><br />
-        <input id="email" type="email" placeholder="email" /><br /><br />
-        <input id="password" type="password" placeholder="password" /><br /><br />
-        <input id="firstName" type="text" placeholder="first name" /><br /><br />
-        <input id="lastName" type="text" placeholder="last name" /><br /><br />
-        <button id="update" onclick="Update()">update</button>
+<body onload="loadUserDetails()">
+    <div class="container">
+        <h2 id="heading" class="f"></h2>
+        <a onclick="showUpdate()" id="toUpdate">to update your datails</a>
+        <a onclick="shoping()" id="toShop">to shop</a>
+        <div class="form update" style="display: none; width: 80%">
+            <br />
+            <input placeholder="Email Address" id="email" />
+            <br />
+            <input placeholder="Your Password" id="userPassword" type="password" oninput="setRate()" />
+            <br />
+            <progress value="0" min="1" max="4" id="strengh-rate"></progress>
+            <br />
+            <br />
+            <input placeholder="First Name" id="firstName" />
+            <br />
+            <input placeholder="Last Name" id="lastName" />
+            <br />
+            <br />
+            <button onclick="update()" style="width:100%">Update Details</button>
+        </div>
     </div>
-    
 
 </body>
 </html>

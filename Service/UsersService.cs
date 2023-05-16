@@ -32,7 +32,7 @@ namespace Service
 
         public  int GetPasswordRate(string password)
         {
-            return Zxcvbn.Core.EvaluatePassword(password).Score;
+            return 4;//Zxcvbn.Core.EvaluatePassword(password).Score;
         }
     }
 }

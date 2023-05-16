@@ -13,7 +13,7 @@ public partial class Order
 
     public int? UserId { get; set; }
 
-    public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();//????????????????
+    public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual User? User { get; set; }
 }

@@ -1,4 +1,6 @@
-﻿using entities;
+﻿using AutoMapper;
+using DTO;
+using entities;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 using System.Text.Json;
@@ -12,36 +14,45 @@ namespace Login.Controllers
     public class UsersController : ControllerBase
     {
 
-        IUsersService _usersService;
-        public UsersController(IUsersService usersService)
+        private readonly IMapper _mapper;
+
+        private readonly IUsersService _usersService;
+
+        private readonly ILogger<UsersController> _logger;
+
+        public UsersController(IUsersService usersService, IMapper mapper, ILogger<UsersController> logger)
         {
             _usersService = usersService;
+            _mapper = mapper;
+            _logger = logger;
         }
 
         // POST api/<UserController>
         [HttpPost("Login")]
-        public async Task<ActionResult<User>> Login([FromBody] User userFromBody)
+        public async Task<ActionResult<UserDto>> Login([FromBody] UserLoginDto userFromBody)
         {
-            User user = await _usersService.Login(userFromBody);
+            User user = await _usersService.Login(_mapper.Map<UserLoginDto, User>(userFromBody));
+
+            _logger.LogError($"error!");
             if (user == null)
                 return Unauthorized();
-            return Ok(user);
+            return Ok(_mapper.Map<User, UserDto>(user));
 
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> Register([FromBody] User newUser)
+        public async Task<ActionResult<UserDto>> Register([FromBody] User newUser)
         {
             User userCreated = await _usersService.Register(newUser);
             if (userCreated != null)
-                return Ok(userCreated);
+                return Ok(_mapper.Map<User, UserDto>(userCreated));
             return BadRequest("user name exist");
         }
 
         [HttpPost("password")]
-        public  int checkPassword([FromBody] string password)
+        public int checkPassword([FromBody] string password)
         {
-            return  _usersService.GetPasswordRate(password);
+            return _usersService.GetPasswordRate(password);
         }
 
         // PUT api/<UserController>/5
@@ -51,7 +62,7 @@ namespace Login.Controllers
             if (await _usersService.UpdateUser(id, userToUpdate))
                 return userToUpdate;
             return BadRequest("user name exist");
-            
+
         }
     }
 }

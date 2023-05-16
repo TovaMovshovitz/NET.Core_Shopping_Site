@@ -1,30 +1,47 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8" />
     <title></title>
-    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="./Style.css">
+    <script src="./Home.js"></script>
+
 </head>
 <body>
-    <div>
-        <br /><br />
-        <input id="userNameLogin" type="text" placeholder="user name" /><br /><br />
-        <input id="userPasswordLogin" type="password" placeholder="user password" /><br /><br />
-        <button id="login" onclick="Login()">log in</button><br /><br /><br />
-        <a onclick="document.getElementById('register').style.setProperty('visibility', 'visible')">new user</a><br /><br /><br />
+    <div class="container">
+        <div class="form signin">
+            <h2 class="heading">Existing Customers</h2>
+            <p class="subheading">Sign into Ikea</p>
+            <label for="email">Email Address</label>
+            <input id="email" name="email" value="TOVA67769@gmail.com"> 
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" value="tova mov">
+            <button onclick="signIn()">Sign In</button>
+            <p class="new-user">New user? <a onclick="showSignUp()">Register now</a></p>
+        </div>
+
+        <div style="width:20px;">
+
+        </div>
+        <div class="form signup" style="display:none;">
+            <h2 class="heading">New Customers</h2>
+            <p class="subheading">Register with Ikea today</p>
+            <label for="new-email">Email Address</label>
+            <input id="new-email" name="new-email" value="hadas@gmail.com"> 
+            <label for="new-password">Password</label>
+            <input type="password" id="new-password" name="new-password" value="Hadas12" oninput="setRate()">
+            <progress value="0" min="1" max="4" id="strengh-rate"></progress>
+            <br />
+            <br />
+            <label for="first-name">First Name</label>
+            <input id="first-name" name="first-name" value="Hadas">
+            <label for="last-name">Last Name</label>
+            <input id="last-name" name="last-name" value="Ofek">
+            <button onclick="signUp()">Sign Up</button>
+            <p class="existing-user">Already have an account? <a onclick="showSignIn()">Sign In</a></p>
+
+        </div>
     </div>
-
-    <div id="register" style="visibility:hidden; display:inline">
-
-        <input id="userNameReg" type="text" placeholder="user name" /><br /><br />
-        <input id="userPasswordReg" type="password" placeholder="user password" oninput="passwordStrength()" />
-        <br />
-        <span id="passwordStrengthTxt"></span><progress id="passwordStrength" value="0" max="4"> 0 </progress>
-        <br />
-        <input id="firstName" type="text" placeholder="first name" /><br /><br />
-        <input id="lastName" type="text" placeholder="last name" /><br /><br />
-        <button id="register" onclick="Register()">register</button>
-    </div>
-
 </body>
 </html>

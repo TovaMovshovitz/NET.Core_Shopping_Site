@@ -1,4 +1,6 @@
-﻿using entities;
+﻿using AutoMapper;
+using DTO;
+using entities;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
@@ -10,26 +12,29 @@ namespace MyShop.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        IProductService _productService;
-        public ProductsController(IProductService productService)
+        private readonly IMapper _mapper;
+        private readonly IProductService _productService;
+        public ProductsController(IProductService productService, IMapper mapper)
         {
+            _mapper = mapper;
             _productService = productService;
         }
         // GET: api/<CategoriesController>
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> Get([FromQuery] string name=null, [FromQuery] List<int> categoryIds= null, [FromQuery] int minPrice=0, [FromQuery] int maxPrice=0)
+        public async Task<ActionResult<List<ProductDto>>> Get([FromQuery] string? name, [FromQuery] List<int> categoryIds, [FromQuery] int? minPrice, [FromQuery] int? maxPrice)
         {
             List<Product> products = await _productService.GetAllProducts(name,categoryIds,minPrice,maxPrice);
             
-            return products == null ? NoContent() : Ok(products);
+            return products == null ? NoContent() : Ok(_mapper.Map<List<Product>,List<ProductDto>>(products));
         }
 
 
         // POST api/<CategoriesController>
         [HttpPost]
-        public async Task<ActionResult<Product>> Post([FromBody] Product newProduct)
+        public async Task<ActionResult<ProductDto>> Post([FromBody] ProductDto newProductDto)
         {
-            return Ok(await _productService.AddProduct(newProduct));
+            Product newProduct= await _productService.AddProduct(_mapper.Map<ProductDto,Product>(newProductDto));
+            return Ok(_mapper.Map<Product, ProductDto>(newProduct));
         }
     }
 }

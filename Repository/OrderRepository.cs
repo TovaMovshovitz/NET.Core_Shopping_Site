@@ -8,8 +8,8 @@ namespace Repository
     {
         MyShop213354335Context _MyShopContext;
 
-        public OrderRepository(MyShop213354335Context myShopContext)=>_MyShopContext = myShopContext;
-       
+        public OrderRepository(MyShop213354335Context myShopContext) => _MyShopContext = myShopContext;
+
         public async Task<Order> AddOrder(Order newOrder)
         {
             await _MyShopContext.Orders.AddAsync(newOrder);
@@ -17,7 +17,9 @@ namespace Repository
             return newOrder;
         }
 
-        public async Task<List<Order>> GetAllOrders()=>await _MyShopContext.Orders.ToListAsync();
+        public async Task<List<Order>> GetAllOrders(){
+        return await _MyShopContext.Orders.Include(order=>order.OrderItems).ToListAsync(); 
+    }
 
     }
 }
