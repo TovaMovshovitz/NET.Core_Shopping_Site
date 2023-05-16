@@ -21,5 +21,12 @@ namespace Repository
         return await _MyShopContext.Orders.Include(order=>order.OrderItems).ToListAsync(); 
     }
 
+        public async Task<int> getOrderPrice(int orderId)
+        {
+            
+            List<OrderItem> items=await _MyShopContext.OrderItems.Include(item => item.Product).Where(i => i.OrderId == orderId).ToListAsync();
+            int sum= items.Sum(item => item.Quantity*item.Product.Price);
+            return sum;
+        }
     }
 }

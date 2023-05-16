@@ -75,7 +75,7 @@ public partial class MyShop213354335Context : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ORDER_ITEM_ORDER");
 
-            entity.HasOne(d => d.Prouct).WithMany(p => p.OrderItems)
+            entity.HasOne(d => d.Product).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.ProuctId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ORDER_ITEM_PRODUCT");

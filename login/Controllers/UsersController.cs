@@ -33,7 +33,6 @@ namespace Login.Controllers
         {
             User user = await _usersService.Login(_mapper.Map<UserLoginDto, User>(userFromBody));
 
-            _logger.LogError($"error!");
             if (user == null)
                 return Unauthorized();
             return Ok(_mapper.Map<User, UserDto>(user));
@@ -46,14 +45,9 @@ namespace Login.Controllers
             User userCreated = await _usersService.Register(newUser);
             if (userCreated != null)
                 return Ok(_mapper.Map<User, UserDto>(userCreated));
-            return BadRequest("user name exist");
+            return BadRequest();
         }
 
-        [HttpPost("password")]
-        public int checkPassword([FromBody] string password)
-        {
-            return _usersService.GetPasswordRate(password);
-        }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
