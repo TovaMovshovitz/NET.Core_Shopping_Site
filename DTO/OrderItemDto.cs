@@ -10,8 +10,7 @@ namespace DTO
     public class OrderItemDto
     {
        
-        //public string? ProuctName { get; set; }
-        public int ProuctId { get; set; }
+        public int ProductId { get; set; }
         public int Quantity { get; set; }
 
         

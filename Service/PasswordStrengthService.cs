@@ -11,7 +11,9 @@ namespace Service
 
         public int passwordScore(string password)
         {
-            return Zxcvbn.Core.EvaluatePassword(password).Score;
+            if(password.Length>0)
+                return Zxcvbn.Core.EvaluatePassword(password).Score;
+            return 0;
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿
-
-async function signUp() {
+﻿async function signUp() {
     const email = document.getElementById("new-email").value;
     const password = document.getElementById("new-password").value;
     const firstName = document.getElementById("first-name").value;
@@ -13,7 +11,7 @@ async function signUp() {
         lastName
     };
 
-    const res = await fetch("api/users", {
+    const res = await fetch("api/users/signUp", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -26,11 +24,8 @@ async function signUp() {
     if (status == 200) {
         alert('user signed up successfully');
         showSignIn();
-    } else if (status == 601) {
-        alert(`Password too weak. Please choose a stronger password. res.status = ${status}`);
-    } else if (status == 602) {
-        alert(`Password is on a blacklist. Please choose a different password. res.status = ${status}`);
-    } else {
+    }
+    else {
         alert(`one or more details aren't valid res.status = ${status}`);
     }
 }
@@ -43,7 +38,7 @@ async function signIn() {
         email,
         password
     }
-    const res = await fetch('api/users/Login', {
+    const res = await fetch('api/users/signIn', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -82,7 +77,7 @@ function showSignIn() {
 async function setRate() {
     const password = document.getElementById("new-password").value;
 
-    const result = await fetch("api/password", {
+    const result = await fetch("api/PasswordStrength", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

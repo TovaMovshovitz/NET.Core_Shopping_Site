@@ -35,7 +35,8 @@ namespace MyShop.Controllers
         public async Task<ActionResult<OrderDto>> Post([FromBody] OrderDto newOrderDto)
         {
             Order newOrder = _mapper.Map<OrderDto, Order>(newOrderDto);
-     
+            if (newOrder.Sum == 0)
+                return BadRequest();
             Order order= await _orderService.AddOrder(newOrder);
 
             return Ok(_mapper.Map<Order, OrderDto>(order));

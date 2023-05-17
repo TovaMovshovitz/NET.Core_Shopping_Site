@@ -31,5 +31,10 @@ namespace Repository
             
         }
 
+        public async Task<Product> GetProductById(int id)
+        {
+            return await _MyShopContext.Products.FirstAsync(p => p.Id == id);
+        }
+
     }
 }

@@ -67,7 +67,7 @@ public partial class MyShop213354335Context : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.OrderId).HasColumnName("ORDER_ID");
-            entity.Property(e => e.ProuctId).HasColumnName("PROUCT_ID");
+            entity.Property(e => e.ProductId).HasColumnName("PRODUCT_ID");
             entity.Property(e => e.Quantity).HasColumnName("QUANTITY");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
@@ -76,7 +76,7 @@ public partial class MyShop213354335Context : DbContext
                 .HasConstraintName("FK_ORDER_ITEM_ORDER");
 
             entity.HasOne(d => d.Product).WithMany(p => p.OrderItems)
-                .HasForeignKey(d => d.ProuctId)
+                .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ORDER_ITEM_PRODUCT");
         });

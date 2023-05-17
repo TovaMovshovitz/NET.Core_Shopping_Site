@@ -63,6 +63,7 @@ function postOrder(id) {
     const button = document.createElement('button');
     button.innerHTML = `Continue Shopping`;
     container.appendChild(button);
+    button.addEventListener("click", () => {window.location.assign("./products.html"); })
 
 }
 function getUserId() {

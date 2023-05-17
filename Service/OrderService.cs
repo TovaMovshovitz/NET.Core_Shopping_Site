@@ -8,13 +8,23 @@ namespace Service
     public class OrderService : IOrderService
     {
         IOrderRepository _orderRepository;
-        public OrderService(IOrderRepository orderRepository)=>_orderRepository = orderRepository;
-
+        IProductRepository _productRepository;
+        public OrderService(IOrderRepository orderRepository, IProductRepository productRepository)
+        {
+            _orderRepository = orderRepository;
+            _productRepository = productRepository;
+        }
 
         public async Task<Order> AddOrder(Order newOrder)
         {
-            List<int> productIds = newOrder.OrderItems.Select(item => item.ProuctId).ToList();
-            int orderSum = await _orderRepository.getOrderPrice(newOrder.Id);
+            int orderSum = 0;
+
+            foreach (var item in newOrder.OrderItems)
+            {
+                Product product = await _productRepository.GetProductById(item.ProductId);
+                orderSum += product.Price * item.Quantity;
+            }
+
             if (orderSum != newOrder.Sum)
             {
                 throw new InvalidOperationException("Dont change the order sum!!!");

@@ -27,11 +27,12 @@ namespace Service
 
         public async Task<bool> UpdateUser(int id, User userToUpdate)
         {
-            User user =await _userRepository.GetUser(id);
-            if (user==null) return false;
-            if (user.Email != userToUpdate.Email && await _userRepository.IsUserNameExist(userToUpdate.Email))
-                return false;
-            await _userRepository.UpdateUser(id, userToUpdate);
+            //User user =await _userRepository.GetUser(id);
+            //if (user==null) return false;
+            //if (user.Email != userToUpdate.Email && await _userRepository.IsUserNameExist(userToUpdate.Email))
+            //    return false;
+            userToUpdate.Id = id;
+            await _userRepository.UpdateUser(id,userToUpdate);
             return true;
         }
 

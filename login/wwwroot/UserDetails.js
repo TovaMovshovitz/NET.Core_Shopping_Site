@@ -2,20 +2,19 @@
 async function loadUserDetails() {
     try {
         const user = JSON.parse(sessionStorage.getItem('user'));
-        const { id, email, password, firstName, lastName } = user;
+        const { id, email, firstName, lastName } = user;
         document.getElementById("email").value = email;
-        document.getElementById("userPassword").value = password.replace(/\s+/g, '');
         document.getElementById("firstName").value = firstName;
         document.getElementById("lastName").value = lastName;
         document.getElementById("heading").innerHTML = `Hello ${firstName} ${lastName}`;
-        //await setRate();
+        await setRate();
     } catch (error) {
         alert('Error loading user details.');
     }
 }
 
 function shoping() {
-    window.location.assign("./Product.html");
+    window.location.assign("./Products.html");
 }
 
 async function update() {
@@ -26,7 +25,7 @@ async function update() {
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
 
-    const strength = 4//await passwordRate(password);
+    const strength = await passwordRate(password);
     if (strength < 2) {
         alert('Password too weak');
         return;
@@ -63,7 +62,7 @@ async function setRate() {
 }
 
 async function passwordRate(password) {
-    const res = await fetch('api/password', {
+    const res = await fetch('api/PasswordStrength', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(password)

@@ -28,18 +28,17 @@ namespace Login.Controllers
         }
 
         // POST api/<UserController>
-        [HttpPost("Login")]
+        [HttpPost("signIn")]
         public async Task<ActionResult<UserDto>> Login([FromBody] UserLoginDto userFromBody)
         {
             User user = await _usersService.Login(_mapper.Map<UserLoginDto, User>(userFromBody));
-
             if (user == null)
                 return Unauthorized();
             return Ok(_mapper.Map<User, UserDto>(user));
 
         }
 
-        [HttpPost]
+        [HttpPost("signUp")]
         public async Task<ActionResult<UserDto>> Register([FromBody] User newUser)
         {
             User userCreated = await _usersService.Register(newUser);
