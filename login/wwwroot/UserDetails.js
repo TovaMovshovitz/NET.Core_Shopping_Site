@@ -20,7 +20,7 @@ async function update() {
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
 
-    const dataToSend = { id, email, password, firstName, lastName };
+    const dataToSend = { id, email, firstName, lastName };
     const res = await fetch(`api/users/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
