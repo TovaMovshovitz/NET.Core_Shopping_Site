@@ -1,6 +1,7 @@
 ﻿function onLoad() {
     loadData();
     addListeners();
+    isEmpty();
 }
 
 async function loadData() {
@@ -17,7 +18,7 @@ function addListeners() {
 async function submitOrder() {
     const button = document.getElementById("submit-order");
     button.disable = true;
-    button.innerHTML = "wait...";
+    button.innerHTML = "loading...";
 
     const userId = getUserId();
     if (!userId) {
@@ -58,7 +59,7 @@ async function submitOrder() {
     }
     else {
         button.disable = true;
-        button.innerHTML = "wait...";
+        button.innerHTML = "loading...";
         alert(`status code ${res.status}`)
     }
 }
@@ -74,7 +75,7 @@ function postOrder(id) {
     const button = document.createElement('button');
     button.innerHTML = `Continue Shopping`;
     container.appendChild(button);
-    button.addEventListener("click", () => {window.location.assign("./products.html"); })
+    button.addEventListener("click", () => { window.location.assign("./products.html"); })
 
 }
 function getUserId() {
@@ -123,6 +124,7 @@ function removeProductFromBag(event, productId) {
     card.remove();
     const products = removeProductFromLocalStorage(productId);
     setTitles(products);
+    isEmpty();
 }
 
 function removeProductFromLocalStorage(productId) {
@@ -135,4 +137,17 @@ function removeProductFromLocalStorage(productId) {
 function createCard(type) {
     const template = document.querySelector(type);
     return template.content.cloneNode(true);
+}
+
+async function isEmpty() {
+    const products = await getProducts();
+    if (products.length == 0) {
+        const container = document.querySelector('.container');
+        container.innerHTML = 'no products<br/><br/>';
+
+        const button = document.createElement('button');
+        button.innerHTML = `Continue Shopping`;
+        container.appendChild(button);
+        button.addEventListener("click", () => { window.location.assign("./products.html"); })
+    }
 }

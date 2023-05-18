@@ -19,8 +19,15 @@ async function update() {
     const email = document.getElementById("email").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
+    const password = document.getElementById("userPassword").value;
 
-    const dataToSend = { id, email, firstName, lastName };
+    const strength = await passwordRate(password);
+    if (strength < 2) {
+        alert('Password too weak');
+        return;
+    }
+
+    const dataToSend = { id, email, password, firstName, lastName };
     const res = await fetch(`api/users/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

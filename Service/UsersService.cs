@@ -30,9 +30,9 @@ namespace Service
 
         public async Task<bool> UpdateUser(int id, User userToUpdate)
         {
-            if (_passwordStrengthService.passwordScore(userToUpdate.Password) >= 2)
+            if (_passwordStrengthService.passwordScore(userToUpdate.Password)< 2)
                 return false;
-            User user =await _userRepository.GetUser(id);
+            //User user =await _userRepository.GetUser(id);
             //if (user==null) return false;
             //if (user.Email != userToUpdate.Email && await _userRepository.IsUserNameExist(userToUpdate.Email))
             //    return false;

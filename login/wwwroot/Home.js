@@ -2,7 +2,7 @@
 async function signUp() {
     const button = document.getElementById("singUp-button");
     button.disable = true;
-    button.innerHTML = "wait...";
+    button.innerHTML = "loading...";
 
     if (!isPasswordValid()) {
         button.disable = false;
@@ -59,7 +59,7 @@ function isPasswordValid(){
 async function signIn() {
     const button = document.getElementById("singIn-button");
     button.disable = true;
-    button.innerHTML = "wait...";
+    button.innerHTML = "loading...";
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;

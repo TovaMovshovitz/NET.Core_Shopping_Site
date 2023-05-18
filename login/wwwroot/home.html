@@ -15,9 +15,9 @@
             <p class="subheading">Sign into Ikea</p>
             <p id="singInError" class="error"></p>
             <label for="email">Email Address</label>
-            <input id="email" name="email" value="TOVA67769@gmail.com"> 
+            <input id="email" name="email"> 
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" value="tova mov">
+            <input type="password" id="password" name="password">
             <button id="singIn-button" onclick="signIn()">Sign In</button>
             <p class="new-user">New user? <a onclick="showSignUp()">Register now</a></p>
         </div>
@@ -30,16 +30,16 @@
             <p class="subheading">Register with Ikea today</p>
             <p id="singUpError" class="error"></p>
             <label for="new-email">Email Address</label>
-            <input id="new-email" name="new-email" value="hadas@gmail.com">
+            <input id="new-email" name="new-email">
             <label for="new-password">Password</label>
-            <input type="password" id="new-password" name="new-password" value="Hadas12" oninput="setRate()">
+            <input type="password" id="new-password" name="new-password" oninput="setRate()">
             <progress value="0" min="1" max="4" id="strength-rate"></progress>
             <br />
             <br />
             <label for="first-name">First Name</label>
-            <input id="first-name" name="first-name" value="Hadas">
+            <input id="first-name" name="first-name">
             <label for="last-name">Last Name</label>
-            <input id="last-name" name="last-name" value="Ofek">
+            <input id="last-name" name="last-name">
             <button id="singUp-button" onclick="signUp()">Sign Up</button>
             <p class="existing-user">Already have an account? <a onclick="showSignIn()">Sign In</a></p>
 
