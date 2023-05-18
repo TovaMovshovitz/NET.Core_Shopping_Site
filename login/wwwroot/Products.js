@@ -25,6 +25,7 @@ function drowProducts(products) {
     document.getElementById('PoductList').innerHTML = null;
     const cards = products.map(product => designProduct(product));
     cards.forEach(card => document.getElementById('PoductList').appendChild(card))
+    setCounter(products.length);
 }
 
 function designProduct(product) {
@@ -129,5 +130,6 @@ function updateBagCount() {
     document.getElementById('ItemsCountText').innerText = bag.length;
 }
 
-//window.addEventListener('load', fetchProduct());
-//document.body.addEventListener('load', fetchProduct());
+function setCounter(number) {
+    document.querySelector('#counter').innerText = number;
+}

@@ -15,7 +15,6 @@ namespace DTO
 
         public string? LastName { get; set; }
         
-        [EmailAddress]
         public string Email { get; set; } = null!;
 
     }

@@ -16,7 +16,7 @@
             <h1></h1>
             <p class="price"></p>
             <p class="description"></p>
-            <p><button>הוסף לסל</button></p>
+            <p><button>add to bag</button></p>
         </div>
     </template>
     <template id="templateCategory">
@@ -38,13 +38,10 @@
             <section class="QuickLinks">
                 <ul>
                     <li class="" data-section="myAccount">
-                        <a href="#" title="כניסה לצפייה בפרטי החשבון" onclick="TrackLinkID(this);" accesskey="h">החשבון שלי</a>
+                        <a href="/UserDetails.html" onclick="TrackLinkID(this);" accesskey="h">my account</a>
                     </li>
                     <li>
-                        <a href="#" title="קניה מהירה">קניה מהירה</a>
-                    </li>
-                    <li>
-                        <a href="#" title="עזרה - שאלות נפוצות, כיצד לקנות באינטרנט, מדריך ועוד" target="_blank">עזרה</a>
+                        <a href="#" target="_blank">help</a>
                     </li>
                 </ul>
             </section>
@@ -60,7 +57,7 @@
                 </a>
             </span>
             <div class="Checkout ">
-                <a class="goToCart" href="ShoppingBag.html">לקופה</a>
+                <a class="goToCart" href="ShoppingBag.html">cheakout</a>
             </div>
 
 
@@ -69,37 +66,34 @@
 
     <div id="filters" class="Filters fixedVisible">
         <div class="ResultCount" style="position: absolute; top: 0px;">
-            <a class="Clear" href="">נקה הכל</a>
-            <div><span id="counter">  </span> מוצרים</div>
-
+            <a class="Clear" href="">clean all</a>
+            <div><span id="counter">  </span> products</div>
             <div>
                 <span id="counter">
-
                 </span>
             </div>
         </div>
         <div id="categoryList" class="filterBreak">
-            <span>בחירת קטגוריה</span>
+            <span>select categories</span>
         </div>
 
         <div id="nameFilter" class="nameFilter filterBreak">
 
-            <input type="text" id="nameSearch" class="floatRight" placeholder="חיפוש לפי שם מוצר">
+            <input type="text" id="nameSearch" class="floatRight" placeholder="search by name">
 
             <button class="floatRight" tabindex="0" onclick="filterProducts()">
-                <span class="header42"><img src="./Icons/search.svg" alt="סמל חיפוש"></span>
+                <span class="header42"><img src="./Icons/search.svg"></span>
             </button>
         </div>
         <div id="priceRangeFilter" class="filterBreak">
-            <div><span id="counter">  </span> מחיר:</div>
+            <div><span id="counter">  </span> price:</div>
 
             <input type="text" maxlength="9" id="minPrice" class="priceInputText">
             <span class="priceCurrency">$</span>
-
             <input type="text" maxlength="9" id="maxPrice" class="priceInputText">
             <span class="priceCurrency">$</span>
             <button onclick="filterProducts()">
-                <span><img src="./Icons/search.svg" alt="סמל חיפוש"></span>
+                <span><img src="./Icons/search.svg"></span>
             </button>
         </div>
     </div>

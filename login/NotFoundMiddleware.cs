@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 namespace MyShop
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class HandleErrorMiddleware
+    public class NotFoundMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public HandleErrorMiddleware(RequestDelegate next)
+        public NotFoundMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -22,11 +22,11 @@ namespace MyShop
     }
 
     // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class HandleErrorMiddlewareExtensions
+    public static class NotFoundMiddlewareExtensions
     {
-        public static IApplicationBuilder UseHandleErrorMiddleware(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseNotFoundMiddleware(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<HandleErrorMiddleware>();
+            return builder.UseMiddleware<NotFoundMiddleware>();
         }
     }
 }

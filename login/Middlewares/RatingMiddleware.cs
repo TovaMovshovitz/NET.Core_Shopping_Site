@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Service;
 using System.Threading.Tasks;
 
-namespace MyShop
+namespace MyShop.Middlewares
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class RatingMiddleware
@@ -18,17 +18,18 @@ namespace MyShop
 
         public async Task Invoke(HttpContext httpContext, IRatingService ratingService)
         {
-            Rating newRating = new() {
+            Rating newRating = new()
+            {
                 Host = httpContext.Request.Host.Host,
                 Path = httpContext.Request.Path.Value,
                 Method = httpContext.Request.Method,
                 UserAgent = httpContext.Request.Headers["User-Agent"].ToString(),
                 Referer = httpContext.Request.Headers["Referer"].ToString(),
-                RecordDate= DateTime.Now
-        };
+                RecordDate = DateTime.Now
+            };
 
             await ratingService.AddRating(newRating);
-            await  _next(httpContext);
+            await _next(httpContext);
         }
     }
 

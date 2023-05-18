@@ -40,7 +40,6 @@ namespace Repository
             if (user == null)
                 return false;
             return true;
-
         }
 
         public async Task UpdateUser(int id, User userToUpdate)

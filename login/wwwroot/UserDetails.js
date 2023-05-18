@@ -1,6 +1,5 @@
 ﻿
 async function loadUserDetails() {
-    try {
         const user = JSON.parse(sessionStorage.getItem('user'));
         const { id, email, firstName, lastName } = user;
         document.getElementById("email").value = email;
@@ -8,9 +7,6 @@ async function loadUserDetails() {
         document.getElementById("lastName").value = lastName;
         document.getElementById("heading").innerHTML = `Hello ${firstName} ${lastName}`;
         await setRate();
-    } catch (error) {
-        alert('Error loading user details.');
-    }
 }
 
 function shoping() {
@@ -21,15 +17,8 @@ async function update() {
     const user = JSON.parse(sessionStorage.getItem('user'));
     const { id } = user;
     const email = document.getElementById("email").value;
-    const password = document.getElementById("userPassword").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
-
-    const strength = await passwordRate(password);
-    if (strength < 2) {
-        alert('Password too weak');
-        return;
-    }
 
     const dataToSend = { id, email, password, firstName, lastName };
     const res = await fetch(`api/users/${id}`, {

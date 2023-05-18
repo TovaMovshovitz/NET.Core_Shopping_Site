@@ -29,9 +29,10 @@ namespace Login.Controllers
 
         // POST api/<UserController>
         [HttpPost("signIn")]
-        public async Task<ActionResult<UserDto>> Login([FromBody] UserLoginDto userFromBody)
+        public async Task<ActionResult<UserDto>> SignIn([FromBody] UserLoginDto userFromBody)
         {
-            User user = await _usersService.Login(_mapper.Map<UserLoginDto, User>(userFromBody));
+            _logger.LogInformation($"user {userFromBody.Email} try to sign in");
+            User user = await _usersService.SignIn(_mapper.Map<UserLoginDto, User>(userFromBody));
             if (user == null)
                 return Unauthorized();
             return Ok(_mapper.Map<User, UserDto>(user));
@@ -39,9 +40,9 @@ namespace Login.Controllers
         }
 
         [HttpPost("signUp")]
-        public async Task<ActionResult<UserDto>> Register([FromBody] User newUser)
+        public async Task<ActionResult<UserDto>> SignUp([FromBody] User newUser)
         {
-            User userCreated = await _usersService.Register(newUser);
+            User userCreated = await _usersService.SignUp(newUser);
             if (userCreated != null)
                 return Ok(_mapper.Map<User, UserDto>(userCreated));
             return BadRequest();
@@ -53,9 +54,8 @@ namespace Login.Controllers
         public async Task<ActionResult<User>> Put(int id, [FromBody] User userToUpdate)
         {
             if (await _usersService.UpdateUser(id, userToUpdate))
-                return userToUpdate;
-            return BadRequest("user name exist");
-
+                return Ok(userToUpdate);
+            return BadRequest();
         }
     }
 }

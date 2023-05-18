@@ -15,14 +15,23 @@ function addListeners() {
 }
 
 async function submitOrder() {
+    const button = document.getElementById("submit-order");
+    button.disable = true;
+    button.innerHTML = "wait...";
+
     const userId = getUserId();
     if (!userId) {
         alert('You are you are forward to the login page');
-        window.location.assign("./home.html");
+        window.location.assign("./home.html?fromShoppingBag=true");
+        return;
     };
 
     const products = getProducts();
-
+    if (products.length == 0) {
+        alert("no items to order");
+        window.location.assign("./products.html");
+        return;
+    }
     const orderItems = products.map((p) => ({
         productId: p.id,
         quantity: 1,
@@ -48,6 +57,8 @@ async function submitOrder() {
         postOrder(o.id);
     }
     else {
+        button.disable = true;
+        button.innerHTML = "wait...";
         alert(`status code ${res.status}`)
     }
 }
@@ -57,7 +68,7 @@ function postOrder(id) {
     const container = document.querySelector('.container');
     container.innerHTML = null;
     const p = document.createElement('p');
-    p.innerHTML = `Order Id ${id}`;
+    p.innerHTML = `Order Id ${id} placed successfully`;
     container.appendChild(p);
 
     const button = document.createElement('button');

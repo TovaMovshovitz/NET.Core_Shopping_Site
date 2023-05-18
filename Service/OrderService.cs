@@ -27,7 +27,7 @@ namespace Service
 
             if (orderSum != newOrder.Sum)
             {
-                throw new InvalidOperationException("Dont change the order sum!!!");
+                throw new InvalidOperationException($"Attempt to change the sum of the order! order sum:{orderSum}, user send:{newOrder.Sum}");
             }
             
             return await _orderRepository.AddOrder(newOrder);
